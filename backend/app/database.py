@@ -1,7 +1,14 @@
+import certifi
 from motor.motor_asyncio import AsyncIOMotorClient
 from app.config import MONGO_URI
 
-client = AsyncIOMotorClient(MONGO_URI)
+client = AsyncIOMotorClient(
+    MONGO_URI,
+    tls=True,
+    tlsCAFile=certifi.where(),
+    serverSelectionTimeoutMS=30000,
+)
+
 database = client["sitemate_ai"]
 
 users_collection = database["users"]
