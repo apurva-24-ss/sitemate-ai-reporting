@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -11,6 +13,8 @@ from app.routes import (
     pdf_routes,
     photo_routes,
 )
+
+os.makedirs("uploads/site_photos", exist_ok=True)
 
 app = FastAPI(title="SiteMate AI Reporting API")
 
